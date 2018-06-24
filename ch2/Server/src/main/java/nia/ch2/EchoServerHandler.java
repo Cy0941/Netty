@@ -14,6 +14,7 @@ import io.netty.util.CharsetUtil;
  * Function: TODO
  * Reason: 扩展自ChannelInboundHandlerAdapter，服务端接收到消息后仍然需要回送消息给客户端，而write()是异步的，直到channelRead0()
  * 方法返回可能仍然没有完成，ChannelInboundHandlerAdapter在这个时间点不会释放消息
+ * cxy ChannelHandlerContext 代表了 ChannelHandler 和 ChannelPipeline 之间的绑定（可以被用于获取 Channel，主要被用于写出站数据）
  * Date: 2018/6/19 7:42 </br>
  *
  * @author: cx.yang
@@ -33,7 +34,7 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
         ByteBuf in = (ByteBuf)msg;
         //将消息记录到控制台
         System.out.println("Server received : "+in.toString(CharsetUtil.UTF_8));
-        //cxy 将接收到的消息写给发送者，而不冲刷出站消息
+        //cxy 将接收到的消息写给发送者，而不冲刷出站消息 异步
         ctx.write(in);
     }
 

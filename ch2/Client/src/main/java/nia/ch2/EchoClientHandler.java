@@ -11,6 +11,7 @@ import io.netty.util.CharsetUtil;
  * Function: TODO
  * Reason: 扩展自 SimpleChannelInboundHandler，当channelRead0()
  * 方法完成时，已经得到了传入消息并且已经处理完成了；cxy 该方法返回时，SimpleChannelInboundHandler负责释放指向保存该消息的ByteBuf的内存引用
+ * cxy ChannelHandlerContext 代表了 ChannelHandler 和 ChannelPipeline 之间的绑定（可以被用于获取 Channel，主要被用于写出站数据）
  * Date: 2018/6/19 22:51 </br>
  *
  * @author: cx.yang

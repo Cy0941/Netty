@@ -13,7 +13,11 @@ import java.net.InetSocketAddress;
 
 /**
  * Function: TODO
- * Reason: TODO ADD REASON(可选).</br>
+ * Reason: TODO Server 端需要两个 EventLoopGroup：
+ *  第一组：只包含一个ServerChannel，代表服务器自身的已绑定到某个本地端口的正在监听的套接字
+ *  第二组：包含所有已创建的用来处理传入客户端的连接（对于每个服务器已经接受的连接都有一个）的 Channel
+ *  说明：1、与 ServerChannel 相关联的 EventLoopGroup 将分配一个负责为传入连接请求创建 Channel 的 EventLoop
+ *       2、第二个 EventLoopGroup 负责给他的 Channel 分配一个 EventLoop
  * Date: 2018/6/19 22:24 </br>
  *
  * @author: cx.yang
@@ -39,6 +43,15 @@ public class EchoServer {
     private void start() {
         final EchoServerHandler serverHandler = new EchoServerHandler();
         //1、创建EventLoopGroup cxy 使用的是NIO传输，所以指定NioEventLoopGroup来接受和处理新的连接
+        /**
+         * EventLoop 是 Netty 的核心抽象，用于处理连接的生命周期中所发生的事件
+         * 一个 EventLoopGroup 中包含一个或多个 EventLoop
+         * 一个 EventLoop 在其生命周期内只和一个 Thread 绑定
+         * 所有由 EventLoop 处理的 IO 事件都将在它专有的 Thread 上被处理
+         * 一个 Channel 在它的生命周期内只注册于一个 EventLoop
+         * 一个 EventLoop 可能会被分配给一个或多个 Channel
+         * fixme 多个 Channel 可能被同一个 Thread 进行处理？？？
+         */
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             //2、创建ServerBootstrap
