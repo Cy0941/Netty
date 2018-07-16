@@ -2,7 +2,6 @@ package nia.ch5;
 
 import io.netty.buffer.*;
 import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.CharsetUtil;
 
