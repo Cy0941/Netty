@@ -1,6 +1,8 @@
 package nia.ch5;
 
-import io.netty.buffer.*;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.CompositeByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.CharsetUtil;
@@ -8,8 +10,6 @@ import io.netty.util.CharsetUtil;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.Random;
-
-import static io.netty.channel.DummyChannelHandlerContext.DUMMY_INSTANCE;
 
 /**
  * Function: ByteBuf - Netty 的数据容器；维护了两个不同的索引（readerIndex & writerIndex）<br>
