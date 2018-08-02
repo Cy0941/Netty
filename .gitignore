@@ -25,5 +25,6 @@
 hs_err_pid*
 /.idea/
 /*/target/
-/netty.iml
+/*.iml
 /*/ch7.iml
+/*/*.iml
