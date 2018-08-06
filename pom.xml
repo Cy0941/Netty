@@ -18,6 +18,7 @@
         <module>ch8</module>
         <module>ch9</module>
         <module>ch10</module>
+        <module>ch11</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -28,6 +29,8 @@
         <netty.version>4.1.25.Final</netty.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <lombok.version>1.16.20</lombok.version>
+        <protobuf.version>2.5.0</protobuf.version>
     </properties>
 
     <dependencyManagement>
@@ -46,6 +49,16 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
